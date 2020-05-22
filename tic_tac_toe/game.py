@@ -8,8 +8,9 @@ def main():
     board = Board([[" " for _ in range(3)] for _ in range(3)])
     print("Enter a pair of coordinates separated by space in range 3 "
           "(e.g, 1 1).")
-    while board.check_state() is None:
+    while board.check_state() != 0:
         print(board)
+
         coords = input("> ").strip().split()
         try:
             x, y = (int(coord) for coord in coords)
@@ -17,15 +18,21 @@ def main():
         except ValueError:
             print("Enter a valid pair of coordinates.")
             continue
+        if board.check_state() == -1:
+            print(board)
+            print("You won!")
+            break
+
         tree = Tree(board)
         x, y = tree.find_best_move()
         board.make_move(x, y)
-    if board.check_state() == -1:
-        print("You won!")
-    elif board.check_state() == 0:
+        if board.check_state() == 1:
+            print(board)
+            print("Computer won!")
+            break
+    if board.check_state() == 0:
+        print(board)
         print("Draw!")
-    else:
-        print("Computer won!")
 
 
 if __name__ == '__main__':
