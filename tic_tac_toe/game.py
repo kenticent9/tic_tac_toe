@@ -6,8 +6,8 @@ from tic_tac_toe.btree import Tree
 def main():
     """Play Tic-Tac-Toe."""
     board = Board([[" " for _ in range(3)] for _ in range(3)])
-    print("Enter a pair of coordinates separated by space in range 3 "
-          "(e.g, 1 1).")
+    print("Enter a pair of coordinates separated by space in range "
+          "from 0 to 2 (e.g, 1 1).")
     while board.check_state() != 0:
         print(board)
 
